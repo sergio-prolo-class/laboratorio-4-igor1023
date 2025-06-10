@@ -1,8 +1,14 @@
 package dominio.interno;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class CLT extends Funcionario{
+
+    private final int MAX_ESTAGIARIO = 2;
+
+    // associacao com estagiario
+    private Set<Estagiario> estagiarios;
 
     private double salario;
     private int cargaHoraria;
@@ -19,6 +25,16 @@ public class CLT extends Funcionario{
         this.carteiraTrabalho = carteiraTrabalho;
         this.habilidades = habilidades;
 
+        this.estagiarios = new HashSet<Estagiario>();
+    }
+
+    public boolean adicionarEstagiario(Estagiario estagiario){
+
+        // foi assim que pensei em como controlar a quantidade de estagiarios
+        if(this.estagiarios.size() < MAX_ESTAGIARIO)
+            return this.estagiarios.add(estagiario);
+
+        return false;
     }
 
 }
